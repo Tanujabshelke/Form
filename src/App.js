@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import { useState } from "react";
+// import Add from './Component/Add';
+import View from "./Component/View";
+import {
+  BrowserRouter,
+  Link,
+  Route,
+  Switch,
+  useNavigate
+} from "react-router-dom";
+import Add from "./Component/Add";
 
 function App() {
+  const [add, setAdd] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <section className="header">WELCOME</section>
+      <section className="main">
+        <nav className="main--sidebar">
+          <button
+            onClick={() => {
+              setAdd(true);
+            }}
+          >
+            Add
+          </button>
+          <button
+            onClick={() => {
+              setAdd(false);
+            }}
+          >
+            View
+          </button>
+        </nav>
+        <div className="main--view">{add ? <Add /> : <View />}</div>
+      </section>
     </div>
   );
 }
